@@ -84,7 +84,70 @@ def start():
     inst.insert(INSERT, "Place your Ships! \nUse the arrow keys \nto move the ship and '/' to rotate!")
     inst.config(state = DISABLED)
 
-    
+    title.pack_forget()
+    startButton.pack_forget()
+    inst.pack()
+    field.pack()
+    field.update()
+    # Placing Ships
+    while i < 5:
+        ships.append(i)
+        # Placing Patrol Boat
+        if i == 0:
+            ships[i] = field.create_rectangle(11, 271, 33, 318, fill="grey")
+            field.update()
+            shipsLoc.append([[1, 1],[1, 2]])
+            while keyboard.is_pressed("enter") != True:
+                if keyboard.is_pressed("up") and shipsLoc[i][0][1] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, -25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] - 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] - 1
+                    print(shipsLoc[i])
+                    field.update()
+                elif keyboard.is_pressed("right") and((shipsLoc[i][1][0] != 10 and rotate == True) or (shipsLoc[i][0][0] != 10 and rotate == False)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] + 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] + 1
+                    print(shipsLoc[i])
+                    field.update()
+                elif keyboard.is_pressed("down") and ((shipsLoc[i][1][1] != 10 and rotate == False) or (shipsLoc[i][0][1] != 10 and rotate == True)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, 25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] + 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] + 1
+                    print(shipsLoc[i])
+                    field.update()
+                elif keyboard.is_pressed("left") and shipsLoc[i][0][0] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], -25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] - 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] - 1
+                    print(shipsLoc[i])
+                    field.update()
+                elif keyboard.is_pressed("/") and keyDown == False:
+                    keyDown = True
+                    if rotate == False and shipsLoc[i][0][0] != 10:
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 47, field.coords(ships[i])[1] + 22)
+                        rotate = True
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0] + 1
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1]
+                        field.update()
+                    elif rotate == True and shipsLoc[i][0][1] != 10:
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 22, field.coords(ships[i])[1] + 47)
+                        rotate = False
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1] + 1
+                        field.update()
+                if keyboard.is_pressed("up") == False and keyboard.is_pressed("right") == False and keyboard.is_pressed("down") == False and keyboard.is_pressed("left") == False and keyboard.is_pressed("/") == False:
+                    keyDown = False
+        # Placing Destroyer and Submarine
+        elif i == 1 or i == 2:
+            ships[i] = field.create_rectangle(11, 271, 33, 343, fill="grey")
+            field.update()
+            shipsLoc.append([[1, 1],[1, 2],[1, 3]])
+
 
                 
 
