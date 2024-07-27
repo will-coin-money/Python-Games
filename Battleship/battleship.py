@@ -316,6 +316,32 @@ def start():
                 f = 0
                 e = 0
         # Placing Aircraft Carrier
+        elif i == 4:
+            ships[i] = field.create_rectangle(11, 271, 33, 393, fill="grey")
+            field.update()
+            shipsLoc.append([[1, 1],[1, 2],[1, 3],[1, 4],[1, 5]])
+            while enter == False:
+                if keyboard.is_pressed("up") and shipsLoc[i][0][1] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, -25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] - 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] - 1
+                    shipsLoc[i][2][1] = shipsLoc[i][2][1] - 1
+                    shipsLoc[i][3][1] = shipsLoc[i][3][1] - 1
+                    shipsLoc[i][4][1] = shipsLoc[i][4][1] - 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("right") and((shipsLoc[i][4][0] != 10 and rotate == True) or (shipsLoc[i][0][0] != 10 and rotate == False)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] + 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] + 1
+                    shipsLoc[i][2][0] = shipsLoc[i][2][0] + 1
+                    shipsLoc[i][3][0] = shipsLoc[i][3][0] + 1
+                    shipsLoc[i][4][0] = shipsLoc[i][4][0] + 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+
 
                 
 
