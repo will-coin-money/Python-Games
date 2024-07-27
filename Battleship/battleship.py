@@ -769,6 +769,32 @@ def start():
                         f = 0
                         e = 0
                         stop = False
+        # Enemy's Turn
+        elif turn == False:
+            turn = True
+            # Picks Random Target
+            if len(Emem) == 0 or ehit == 0:
+                aim = [random.randint(1, 10), random.randint(1,10)]
+                if len(Emem) != 0:
+                    i = 0
+                    while i < len(Emem):
+                        while aim == Emem[i]:
+                            aim = [random.randint(1, 10), random.randint(1,10)]
+                            i = -1
+                        i = i + 1
+            if ehit >= 2 and down == False and rotate == False and Emem[len(Emem) - 1][1] - 1 == 0:
+                down = True
+            elif ehit >= 2 and down == True and rotate == True and Emem[len(Emem) - 1][0] + 1 == 11:
+                down = True
+            if ehit == 1:
+                if miss == True:
+                    g = g + 1
+                if g > len(possSpot) - 1:
+                    g = 0
+                aim = possSpot[g]
+                if possSpot[g][0] == 0 or possSpot[g][0] == 11 or possSpot[g][1] == 0 or possSpot[g][1] == 11:
+                    g = g + 1
+                    aim = possSpot[g]
 
                 
 
