@@ -795,6 +795,40 @@ def start():
                 if possSpot[g][0] == 0 or possSpot[g][0] == 11 or possSpot[g][1] == 0 or possSpot[g][1] == 11:
                     g = g + 1
                     aim = possSpot[g]
+            elif ehit == 2 and hitnum == 2:
+                if Emem[len(Emem) - 1][0] == Emem[len(Emem) - (g + 2)][0]:
+                    rotate = False
+                elif Emem[len(Emem) - 1][1] == Emem[len(Emem) - (g + 2)][1]:
+                    rotate = True
+                if Emem[len(Emem)- (g + 2)][0] < Emem[len(Emem) - 1][0] or  Emem[len(Emem)- (g + 2)][1] < Emem[len(Emem) - 1][1] or miss == True or Emem[len(Emem)-1][0] == 1 or Emem[len(Emem)-1][1] == 1:
+                    down = True
+                if down == False and rotate == False and Emem[len(Emem) - 1][1] - 1 == 0:
+                    down = True
+                elif down == False and rotate == True and Emem[len(Emem) - 1][0] + 1 == 11:
+                    down = True
+                if miss == True or (down == False and rotate == False and Emem[len(Emem) - 1][1] - 1 == 0) or (down == True and rotate == True and Emem[len(Emem) - 1][0] + 1 == 11):
+                    if rotate == False and down == True:
+                        aim = [Emem[mem1][0], Emem[mem1][1] - 1]
+                        down = False
+                    elif rotate == True and down == True:
+                        aim = [Emem[mem1][0] - 1, Emem[mem1][1]]
+                        down = False
+                    elif rotate == False and down == False:
+                        aim = [Emem[mem1][0], Emem[mem1][1] + 1]
+                        down = True
+                    elif rotate == True and down == False:
+                        aim = [Emem[mem1][0] + 1, Emem[mem1][1]]
+                        down = True
+                elif miss == False:
+                    if rotate == False and down == False:
+                       aim = [Emem[len(Emem) - 1][0], Emem[len(Emem) - 1][1] - 1]
+                    elif rotate == True and down == False:
+                        aim = [Emem[len(Emem) - 1][0] - 1, Emem[len(Emem) - 1][1]]
+                    elif rotate == False and down == True:
+                        aim = [Emem[len(Emem) - 1][0], Emem[len(Emem) - 1][1] + 1]
+                    elif rotate == True and down == True:
+                        aim = [Emem[len(Emem) - 1][0] + 1, Emem[len(Emem) - 1][1]]
+
 
                 
 
