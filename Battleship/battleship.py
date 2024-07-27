@@ -509,6 +509,50 @@ def start():
                 e = 0
                 if touching == True:
                     enemyLoc.pop(i)
+        # Placing Aircraft Carrier
+        elif i == 4:
+            while touching == True:
+                touching = False
+                if random.randint(1,2) == 1:
+                    rotate = False
+                    enemyX = random.randint(1,6)
+                    enemyY = random.randint(1,10)
+                else: 
+                    rotate = True
+                    enemyX = random.randint(1,10)
+                    enemyY = random.randint(1,6)
+                if rotate == False:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX + 1, enemyY], [enemyX + 2, enemyY], [enemyX + 3, enemyY], [enemyX + 4, enemyY]])
+                elif rotate == True:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX, enemyY + 1], [enemyX, enemyY + 2], [enemyX, enemyY + 3], [enemyX, enemyY + 4]])
+                # Checks Per Ship
+                while e < len(enemyLoc) - 1:
+                    # Checks Per Block                  
+                    while f < len(enemyLoc[e]):                   
+                        if enemyLoc[i][0] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][1] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][2] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][3] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][4] == enemyLoc[e][f]:
+                            touching = True
+                        f = f + 1
+                    f = 0
+                    e = e + 1
+                f = 0
+                e = 0
+                if touching == True:
+                    enemyLoc.pop(i)
+        print(enemyLoc)
+        rotate = False
+        i = i + 1
+    inst.config(state= NORMAL)
+    inst.delete(1.0,3.37)
+    inst.config(height = 7)
+    inst.insert(INSERT, "Your turn! \nYour ships:     Enemy Ships: \n■ ■             ■ ■\n■ ■ ■           ■ ■ ■\n■ ■ ■           ■ ■ ■\n■ ■ ■ ■         ■ ■ ■ ■\n■ ■ ■ ■ ■       ■ ■ ■ ■ ■")
 
 
                 
