@@ -878,6 +878,119 @@ def start():
 
             Emem.append(aim)
             stop = False
+            # Checks for a hit
+            # Checks Per Ship
+            while e < 5 and stop != True:
+            # Checks Per Block                  
+                while f < len(shipsLoc[e]) and stop != True:                   
+                    if aim == shipsLoc[e][f]:
+                        hit = True
+                        miss = False
+                        print("enemy hit!", ehit, Emem, aim, hitnum, rotate, down, g)
+                        if ehit == 0:
+                            mem1 = len(Emem) - 1
+                        if ehit != 2:
+                            ehit = ehit + 1
+                        hitnum = hitnum + 1
+                        possSpot = []
+                        if aim[1] != 1:
+                            possSpot.append([aim[0], aim[1] - 1])
+                        if aim[0] != 10:
+                            possSpot.append([aim[0] + 1, aim[1]])
+                        if aim[1] != 10:
+                            possSpot.append([aim[0], aim[1] + 1])
+                        if aim[0] != 1:
+                            possSpot.append([aim[0] - 1, aim[1]])
+                        print(possSpot)
+                        field.create_rectangle((aim[0]-1) * 25 + 11, (aim[1]-1) * 25 + 271, (aim[0]-1) * 25 + 33, (aim[1]-1) * 25 + 293, fill = "red", outline = "red")
+                        health[e] = health[e] - 1
+                        if e == 0 and health[e] == 1:
+                            inst.tag_config("Pat2", foreground = "red")
+                        elif e == 0 and health[e] == 0:
+                            inst.tag_config("Pat1", foreground = "red")
+                            rotate = False
+                            down = False
+                            hitnum = 0
+                            ehit = 0
+                            g = 0
+                        elif e == 1 and health[e] == 2:
+                            inst.tag_config("Sub3", foreground = "red")
+                        elif e == 1 and health[e] == 1:
+                            inst.tag_config("Sub2", foreground = "red")
+                        elif e == 1 and health[e] == 0:
+                            inst.tag_config("Sub1", foreground = "red")
+                            rotate = False
+                            down = False
+                            hitnum = 0
+                            ehit = 0
+                            g = 0
+                        elif e == 2 and health[e] == 2:
+                            inst.tag_config("Des3", foreground = "red")
+                        elif e == 2 and health[e] == 1:
+                            inst.tag_config("Des2", foreground = "red")
+                        elif e == 2 and health[e] == 0:
+                            inst.tag_config("Des1", foreground = "red")
+                            rotate = False
+                            down = False
+                            hitnum = 0
+                            ehit = 0
+                            g = 0
+                        elif e == 3 and health[e] == 3:
+                            inst.tag_config("Bat4", foreground = "red")
+                        elif e == 3 and health[e] == 2:
+                            inst.tag_config("Bat3", foreground = "red")
+                        elif e == 3 and health[e] == 1:
+                            inst.tag_config("Bat2", foreground = "red")
+                        elif e == 3 and health[e] == 0:
+                            inst.tag_config("Bat1", foreground = "red")
+                            rotate = False
+                            down = False
+                            hitnum = 0
+                            ehit = 0
+                            g = 0
+                        elif e == 4 and health[e] == 4:
+                            inst.tag_config("Air5", foreground = "red")
+                        elif e == 4 and health[e] == 3:
+                            inst.tag_config("Air4", foreground = "red")
+                        elif e == 4 and health[e] == 2:
+                            inst.tag_config("Air3", foreground = "red")
+                        elif e == 4 and health[e] == 1:
+                            inst.tag_config("Air2", foreground = "red")
+                        elif e == 4 and health[e] == 0:
+                            inst.tag_config("Air1", foreground = "red")
+                            rotate = False
+                            down = False
+                            hitnum = 0
+                            ehit = 0
+                            g = 0
+                    f = f + 1
+                f = 0
+                e = e + 1
+                if hit != True:
+                    miss = True
+                    field.create_rectangle((aim[0]-1) * 25 + 11, (aim[1]-1) * 25 + 271, (aim[0]-1) * 25 + 33, (aim[1]-1) * 25 + 293, fill = "white", outline = "black")    
+            f = 0
+            e = 0
+        field.update()
+        enter = False
+        stop = False
+        hit = False
+        field.coords(reticle, 22, 22)
+        aim = [1, 1]
+        if health == [0, 0, 0, 0, 0]:
+            inst.config(state = NORMAL)
+            inst.delete(1.0, 7.50)
+            inst.insert(1.0, "You Loose!")
+            field.pack_forget()
+            inst.config(state = DISABLED)
+            loose = True
+        elif ehealth == [0, 0, 0, 0, 0]:
+            inst.config(state = NORMAL)
+            inst.delete(1.0, 7.50)
+            inst.insert(1.0, "You Win!")
+            field.pack_forget()
+            inst.config(state = DISABLED)
+            loose = True
 
                 
 
