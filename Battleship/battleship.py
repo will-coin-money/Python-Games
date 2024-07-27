@@ -391,9 +391,74 @@ def start():
                     enter = True
                 if keyboard.is_pressed("up") == False and keyboard.is_pressed("right") == False and keyboard.is_pressed("down") == False and keyboard.is_pressed("left") == False and keyboard.is_pressed("/") == False:
                     keyDown = False
+                # Checks Per Ship
+                while e < len(shipsLoc) - 1:
+                    # Checks Per Block                  
+                    while f < len(shipsLoc[e]):                   
+                        if shipsLoc[i][0] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][1] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][2] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][3] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][4] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        f = f + 1
+                    f = 0
+                    e = e + 1
+                if falCheck == 100:
+                    touching = False
+                falCheck = 100
+                f = 0
+                e = 0
+        rotate = False
+        enter = False     
+        i = i + 1
+        time.sleep(.1)
+    i = 0
+    rotate = False
+    # Placing AI Ships
+    while i < 5:
+        touching = True
+        # Placing Patrol Boart
+        if i == 0:
+            if random.randint(1,2) == 1:
+                rotate = False
+                enemyX = random.randint(1,9)
+                enemyY = random.randint(1,10)
+            else: 
+                rotate = True
+                enemyX = random.randint(1,10)
+                enemyY = random.randint(1,9)
+            if rotate == False:
+                enemyLoc.append([[enemyX, enemyY], [enemyX + 1, enemyY]])
+            elif rotate == True:
+                enemyLoc.append([[enemyX, enemyY], [enemyX, enemyY + 1]])
+        # Placing Submarine and Destroyer
+        elif i == 1 or i == 2:
+            while touching == True:
+                touching = False
+                if random.randint(1,2) == 1:
+                    rotate = False
+                    enemyX = random.randint(1,8)
+                    enemyY = random.randint(1,10)
+                else: 
+                    rotate = True
+                    enemyX = random.randint(1,10)
+                    enemyY = random.randint(1,8)
+                if rotate == False:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX + 1, enemyY], [enemyX + 2, enemyY]])
+                elif rotate == True:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX, enemyY + 1], [enemyX, enemyY + 2]])
 
-
-            
+                
 
 main = Tk()
 main.title("Battleship!")
