@@ -341,9 +341,59 @@ def start():
                     shipsLoc[i][4][0] = shipsLoc[i][4][0] + 1
                     print(shipsLoc[i], touching)
                     field.update()
+                elif keyboard.is_pressed("down") and ((shipsLoc[i][4][1] != 10 and rotate == False) or (shipsLoc[i][0][1] != 10 and rotate == True)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, 25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] + 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] + 1
+                    shipsLoc[i][2][1] = shipsLoc[i][2][1] + 1
+                    shipsLoc[i][3][1] = shipsLoc[i][3][1] + 1
+                    shipsLoc[i][4][1] = shipsLoc[i][4][1] + 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("left") and shipsLoc[i][0][0] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], -25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] - 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] - 1
+                    shipsLoc[i][2][0] = shipsLoc[i][2][0] - 1
+                    shipsLoc[i][3][0] = shipsLoc[i][3][0] - 1
+                    shipsLoc[i][4][0] = shipsLoc[i][4][0] - 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("/") and keyDown == False:
+                    keyDown = True
+                    if rotate == False and (shipsLoc[i][0][0] != 7 and shipsLoc[i][0][0] != 8 and shipsLoc[i][0][0] != 9 and shipsLoc[i][0][0] != 10):
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 122, field.coords(ships[i])[1] + 22)
+                        rotate = True
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0] + 1
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1]
+                        shipsLoc[i][2][0] = shipsLoc[i][0][0] + 2
+                        shipsLoc[i][2][1] = shipsLoc[i][0][1]
+                        shipsLoc[i][3][0] = shipsLoc[i][0][0] + 3
+                        shipsLoc[i][3][1] = shipsLoc[i][0][1]
+                        shipsLoc[i][4][0] = shipsLoc[i][0][0] + 4
+                        shipsLoc[i][4][1] = shipsLoc[i][0][1]
+                        field.update()
+                    elif rotate == True and (shipsLoc[i][0][1] != 7 and shipsLoc[i][0][1] != 8 and shipsLoc[i][0][1] != 9 and shipsLoc[i][0][1] != 10):
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 22, field.coords(ships[i])[1] + 122)
+                        rotate = False
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1] + 1
+                        shipsLoc[i][2][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][2][1] = shipsLoc[i][0][1] + 2
+                        shipsLoc[i][3][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][3][1] = shipsLoc[i][0][1] + 3
+                        shipsLoc[i][4][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][4][1] = shipsLoc[i][0][1] + 4
+                        field.update()
+                elif keyboard.is_pressed("enter") and touching == False:
+                    enter = True
+                if keyboard.is_pressed("up") == False and keyboard.is_pressed("right") == False and keyboard.is_pressed("down") == False and keyboard.is_pressed("left") == False and keyboard.is_pressed("/") == False:
+                    keyDown = False
 
 
-                
+            
 
 main = Tk()
 main.title("Battleship!")
