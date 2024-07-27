@@ -39,8 +39,8 @@ def start():
     loose = False
     stop = False
     down = False
-    reticleImage = PhotoImage(file = r'c:\Users\EJMarine2024\Desktop\Battleship\reticle.png')
-    blank = PhotoImage(file = r'c:\Users\EJMarine2024\Desktop\Battleship\blank.png')
+    reticleImage = PhotoImage(file = r'reticle.png')
+    blank = PhotoImage(file = r'blank.png')
 
     field = Canvas(main, width = 270, height = 530, bg = "navy")
     b1 = field.create_rectangle(1, 1, 270, 10, fill="grey", outline="grey")
