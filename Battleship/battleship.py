@@ -634,6 +634,71 @@ def start():
     inst.update()
     inst.config(state= DISABLED)
 
+    reticle = field.create_image(22, 22, image = reticleImage)
+    field.pack()
+    field.update()
+
+    aim = [1, 1]
+    i = 0
+    touching = False
+    turn = True
+    enter = False
+    rotate = False
+    down = False
+
+    time.sleep(.5)
+
+    # The Actual Game
+    while loose == False:
+        # Your Turn
+        if turn == True:
+            while enter == False:
+                field.lift(reticle)
+                touching = False
+                blink = blink + 1
+                if blink == 400000:
+                    field.itemconfig(reticle, image = blank)
+                    field.update()
+                elif blink == 600000:
+                    field.itemconfig(reticle, image = reticleImage)
+                    field.update()
+                    blink = 0
+                if keyboard.is_pressed("up") and keyDown == False and aim[1] != 1:
+                    keyDown = True
+                    aim[1] = aim[1] - 1
+                    field.move(reticle, 0, -25)
+                    print(aim)
+                    field.update()
+                elif keyboard.is_pressed("right") and keyDown == False and aim[0] != 10:
+                    keyDown = True
+                    aim[0] = aim[0] + 1
+                    field.move(reticle, 25, 0)
+                    print(aim)
+                    field.update()
+                elif keyboard.is_pressed("down") and keyDown == False and aim[1] != 10:
+                    keyDown = True
+                    aim[1] = aim[1] + 1
+                    field.move(reticle, 0, 25)
+                    print(aim)
+                    field.update()
+                elif keyboard.is_pressed("left") and keyDown == False and aim[0] != 1:
+                    keyDown = True
+                    aim[0] = aim[0] - 1
+                    field.move(reticle, -25, 0)
+                    print(aim)
+                    field.update()
+                if keyboard.is_pressed("up") == False and keyboard.is_pressed("right") == False and keyboard.is_pressed("down") == False and keyboard.is_pressed("left") == False and keyboard.is_pressed('enter') == False:
+                    keyDown = False
+                if keyboard.is_pressed("enter") and keyDown == False:
+                    hit = False
+                    keyDown = True
+                    while i < len(mem):
+                        if aim == mem[i]:
+                            print(mem)
+                            touching = True
+                            break
+                        i = i + 1
+
                 
 
 main = Tk()
