@@ -457,6 +457,59 @@ def start():
                     enemyLoc.append([[enemyX, enemyY], [enemyX + 1, enemyY], [enemyX + 2, enemyY]])
                 elif rotate == True:
                     enemyLoc.append([[enemyX, enemyY], [enemyX, enemyY + 1], [enemyX, enemyY + 2]])
+                # Checks Per Ship
+                while e < len(enemyLoc) - 1:
+                    # Checks Per Block                  
+                    while f < len(enemyLoc[e]):                   
+                        if enemyLoc[i][0] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][1] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][2] == enemyLoc[e][f]:
+                            touching = True
+                        f = f + 1
+                    f = 0
+                    e = e + 1
+                f = 0
+                e = 0
+                if touching == True:
+                    enemyLoc.pop(i)
+        # Placing Battleship
+        elif i == 3:
+            while touching == True:
+                touching = False
+                if random.randint(1,2) == 1:
+                    rotate = False
+                    enemyX = random.randint(1,7)
+                    enemyY = random.randint(1,10)
+                else: 
+                    rotate = True
+                    enemyX = random.randint(1,10)
+                    enemyY = random.randint(1,7)
+                if rotate == False:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX + 1, enemyY], [enemyX + 2, enemyY], [enemyX + 3, enemyY]])
+                elif rotate == True:
+                    enemyLoc.append([[enemyX, enemyY], [enemyX, enemyY + 1], [enemyX, enemyY + 2], [enemyX, enemyY + 3]])
+                # Checks Per Ship
+                while e < len(enemyLoc) - 1:
+                    # Checks Per Block                  
+                    while f < len(enemyLoc[e]):                   
+                        if enemyLoc[i][0] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][1] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][2] == enemyLoc[e][f]:
+                            touching = True
+                        elif enemyLoc[i][3] == enemyLoc[e][f]:
+                            touching = True
+                        f = f + 1
+                    f = 0
+                    e = e + 1
+                f = 0
+                e = 0
+                if touching == True:
+                    enemyLoc.pop(i)
+
 
                 
 
