@@ -828,7 +828,29 @@ def start():
                         aim = [Emem[len(Emem) - 1][0], Emem[len(Emem) - 1][1] + 1]
                     elif rotate == True and down == True:
                         aim = [Emem[len(Emem) - 1][0] + 1, Emem[len(Emem) - 1][1]]
-
+            elif ehit == 2 and hitnum == 3:
+                if miss == True:
+                    if rotate == False and down == True:
+                        aim = [Emem[mem1][0], Emem[mem1][1] - 1]
+                        down = False
+                    elif rotate == True and down == True:
+                        aim = [Emem[mem1][0] - 1, Emem[mem1][1]]
+                        down = False
+                    elif rotate == False and down == False:
+                        aim = [Emem[mem1][0], Emem[mem1][1] + 1]
+                        down = True
+                    elif rotate == True and down == False:
+                        aim = [Emem[mem1][0] + 1, Emem[mem1][1]]
+                        down = True
+                elif miss == False:
+                    if rotate == False and down == False:
+                       aim = [Emem[len(Emem) - 1][0], Emem[len(Emem) - 1][1] - 1]
+                    elif rotate == True and down == False:
+                        aim = [Emem[len(Emem) - 1][0] - 1, Emem[len(Emem) - 1][1]]
+                    elif rotate == False and down == True:
+                        aim = [Emem[len(Emem) - 1][0], Emem[len(Emem) - 1][1] + 1]
+                    elif rotate == True and down == True:
+                        aim = [Emem[len(Emem) - 1][0] + 1, Emem[len(Emem) - 1][1]]
 
                 
 
