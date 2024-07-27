@@ -698,6 +698,77 @@ def start():
                             touching = True
                             break
                         i = i + 1
+                    if touching == False:
+                        enter = True
+                        turn = False
+                        mem.append(aim)
+                        # Checks Per Ship
+                        while e < 5 and stop != True:
+                        # Checks Per Block                  
+                            while f < len(enemyLoc[e]) and stop != True:                   
+                                if aim == enemyLoc[e][f]:
+                                    hit = True
+                                    ehealth[e] = ehealth[e] - 1
+                                    field.create_rectangle(field.coords(reticle)[0] - 11, field.coords(reticle)[1] - 11, field.coords(reticle)[0] + 11, field.coords(reticle)[1] + 11, fill = "red", outline = "red")
+                                    if e == 0 and ehealth[e] == 1:
+                                        inst.tag_config("EPat2", foreground = "red")
+                                        stop = True
+                                    elif e == 0 and ehealth[e] == 0:
+                                        inst.tag_config("EPat1", foreground = "red")
+                                        stop = True
+                                    elif e == 1 and ehealth[e] == 2:
+                                        inst.tag_config("ESub3", foreground = "red")
+                                        stop = True
+                                    elif e == 1 and ehealth[e] == 1:
+                                        inst.tag_config("ESub2", foreground = "red")
+                                        stop = True
+                                    elif e == 1 and ehealth[e] == 0:
+                                        inst.tag_config("ESub1", foreground = "red")
+                                        stop = True
+                                    elif e == 2 and ehealth[e] == 2:
+                                        inst.tag_config("EDes3", foreground = "red")
+                                        stop = True
+                                    elif e == 2 and ehealth[e] == 1:
+                                        inst.tag_config("EDes2", foreground = "red")
+                                        stop = True
+                                    elif e == 2 and ehealth[e] == 0:
+                                        inst.tag_config("EDes1", foreground = "red")
+                                        stop = True
+                                    elif e == 3 and ehealth[e] == 3:
+                                        inst.tag_config("EBat4", foreground = "red")
+                                        stop = True
+                                    elif e == 3 and ehealth[e] == 2:
+                                        inst.tag_config("EBat3", foreground = "red")
+                                        stop = True
+                                    elif e == 3 and ehealth[e] == 1:
+                                        inst.tag_config("EBat2", foreground = "red")
+                                        stop = True
+                                    elif e == 3 and ehealth[e] == 0:
+                                        inst.tag_config("EBat1", foreground = "red")
+                                        stop = True
+                                    elif e == 4 and ehealth[e] == 4:
+                                        inst.tag_config("EAir5", foreground = "red")
+                                        stop = True
+                                    elif e == 4 and ehealth[e] == 3:
+                                        inst.tag_config("EAir4", foreground = "red")
+                                        stop = True
+                                    elif e == 4 and ehealth[e] == 2:
+                                        inst.tag_config("EAir3", foreground = "red")
+                                        stop = True
+                                    elif e == 4 and ehealth[e] == 1:
+                                        inst.tag_config("EAir2", foreground = "red")
+                                        stop = True
+                                    elif e == 4 and ehealth[e] == 0:
+                                        inst.tag_config("EAir1", foreground = "red")
+                                        stop = True
+                                f = f + 1
+                            f = 0
+                            e = e + 1
+                            if hit == False:
+                                field.create_rectangle(field.coords(reticle)[0] - 11, field.coords(reticle)[1] - 11, field.coords(reticle)[0] + 11, field.coords(reticle)[1] + 11, fill = "white", outline = "black")
+                        f = 0
+                        e = 0
+                        stop = False
 
                 
 
