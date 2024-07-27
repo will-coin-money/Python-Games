@@ -147,6 +147,82 @@ def start():
             ships[i] = field.create_rectangle(11, 271, 33, 343, fill="grey")
             field.update()
             shipsLoc.append([[1, 1],[1, 2],[1, 3]])
+            while enter == False:
+                if keyboard.is_pressed("up") and shipsLoc[i][0][1] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, -25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] - 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] - 1
+                    shipsLoc[i][2][1] = shipsLoc[i][2][1] - 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("right") and((shipsLoc[i][2][0] != 10 and rotate == True) or (shipsLoc[i][0][0] != 10 and rotate == False)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] + 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] + 1
+                    shipsLoc[i][2][0] = shipsLoc[i][2][0] + 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("down") and ((shipsLoc[i][2][1] != 10 and rotate == False) or (shipsLoc[i][0][1] != 10 and rotate == True)) and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], 0, 25)
+                    shipsLoc[i][0][1] = shipsLoc[i][0][1] + 1
+                    shipsLoc[i][1][1] = shipsLoc[i][1][1] + 1
+                    shipsLoc[i][2][1] = shipsLoc[i][2][1] + 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("left") and shipsLoc[i][0][0] != 1 and keyDown == False:
+                    keyDown = True
+                    field.move(ships[i], -25, 0)
+                    shipsLoc[i][0][0] = shipsLoc[i][0][0] - 1
+                    shipsLoc[i][1][0] = shipsLoc[i][1][0] - 1
+                    shipsLoc[i][2][0] = shipsLoc[i][2][0] - 1
+                    print(shipsLoc[i], touching)
+                    field.update()
+                elif keyboard.is_pressed("/") and keyDown == False:
+                    keyDown = True
+                    if rotate == False and (shipsLoc[i][0][0] != 10 and shipsLoc[i][0][0] != 9):
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 72, field.coords(ships[i])[1] + 22)
+                        rotate = True
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0] + 1
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1]
+                        shipsLoc[i][2][0] = shipsLoc[i][0][0] + 2
+                        shipsLoc[i][2][1] = shipsLoc[i][0][1]
+                        field.update()
+                    elif rotate == True and (shipsLoc[i][0][1] != 9 and shipsLoc[i][0][1] != 10):
+                        field.coords(ships[i], field.coords(ships[i])[0], field.coords(ships[i])[1], field.coords(ships[i])[0] + 22, field.coords(ships[i])[1] + 72)
+                        rotate = False
+                        shipsLoc[i][1][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][1][1] = shipsLoc[i][0][1] + 1
+                        shipsLoc[i][2][0] = shipsLoc[i][0][0]
+                        shipsLoc[i][2][1] = shipsLoc[i][0][1] + 2
+                        field.update()
+                elif keyboard.is_pressed("enter") and touching == False:
+                    enter = True
+                if keyboard.is_pressed("up") == False and keyboard.is_pressed("right") == False and keyboard.is_pressed("down") == False and keyboard.is_pressed("left") == False and keyboard.is_pressed("/") == False:
+                    keyDown = False
+                # Checks Per Ship
+                while e < len(shipsLoc) - 1:
+                    # Checks Per Block                  
+                    while f < len(shipsLoc[e]):                   
+                        if shipsLoc[i][0] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][1] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        elif shipsLoc[i][2] == shipsLoc[e][f]:
+                            falCheck = falCheck - 1
+                            touching = True
+                        f = f + 1
+                    f = 0
+                    e = e + 1
+                if falCheck == 100:
+                    touching = False
+                falCheck = 100
+                f = 0
+                e = 0
 
 
                 
